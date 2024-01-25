@@ -66,7 +66,9 @@ loop:
 		// NOTE: Read Artifact Value
 		for _, artifactData := range artifactsData.Data.List {
 			artifacts = append(artifacts, model.ArtifactList{
+				Id:                      artifactData.EntryPageId,
 				Name:                    artifactData.Name,
+				IconUrl:                 artifactData.IconUrl,
 				FlowerOfLifeIconUrl:     artifactData.DisplayField.FlowerOfLifeIconUrl,
 				SandsOfEonIconUrl:       artifactData.DisplayField.SandsOfEonIconUrl,
 				PlumeOfDeathIconUrl:     artifactData.DisplayField.PlumeOfDeathIconUrl,

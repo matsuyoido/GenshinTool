@@ -18,8 +18,10 @@ type Artifact struct {
 }
 
 type ArtifactList struct {
+	Id   string `json:"id"`
 	Name string `json:"name"`
 
+	IconUrl                 string `json:"icon_url"`
 	FlowerOfLifeIconUrl     string `json:"flower_of_life_icon_url"`
 	SandsOfEonIconUrl       string `json:"sands_of_eon_icon_url"`
 	PlumeOfDeathIconUrl     string `json:"plume_of_death_icon_url"`

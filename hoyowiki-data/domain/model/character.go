@@ -13,6 +13,7 @@ const (
 )
 
 type Character struct {
+	Id       string           `json:"id"`
 	Name     string           `json:"name"`
 	Element  CharacterElement `json:"element"`
 	IconUrl  string           `json:"icon_url"`

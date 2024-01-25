@@ -96,6 +96,7 @@ loop:
 				continue // NOTE: 旅人は各元素ごとのデータを持つため、対象外
 			}
 			characters = append(characters, model.Character{
+				Id:      characterData.EntryPageId,
 				Name:    characterData.Name,
 				IconUrl: characterData.IconUrl,
 				Element: model.CharacterElement(characterData.FilterValues.CharacterVision.Values[0]),
