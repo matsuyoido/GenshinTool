@@ -1,4 +1,3 @@
-import artifactDataJson from "@assets/artifacts.json";
 import { BigNumber } from "bignumber.js";
 
 interface ArtifactData {
@@ -15,13 +14,17 @@ interface ArtifactData {
 }
 let artifacts: ArtifactData[];
 try {
-  const res = await fetch("https://raw.githubusercontent.com/matsuyoido/GenshinTool/master/docs/assets/artifacts.json");
+  // NOTE: npm run dev をした時 を想定
+  const res = await fetch("/artifacts.json");
+  const artifactDataJson = await res.json();
+  artifacts = artifactDataJson;
+} catch (error) {
+  // https://github.com/vitejs/vite/discussions/8242 のため、fetchに変更
+  const res = await fetch(
+    "https://raw.githubusercontent.com/matsuyoido/GenshinTool/master/docs/artifacts.json",
+  );
   const artifactDataJson = await res.json();
   artifacts = artifactDataJson as ArtifactData[];
-} catch (error) {
-  // https://github.com/vitejs/vite/discussions/8242 のため、fetchに変更(public に配備)
-  // NOTE: npm run dev をした時にエラーが発生するため、エラー時は import を利用するように設定
-  artifacts = artifactDataJson;
 }
 
 type ArtifactGrade = "B" | "A" | "S" | "SS";
