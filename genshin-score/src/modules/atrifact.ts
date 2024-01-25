@@ -15,15 +15,20 @@ interface ArtifactData {
 let artifacts: ArtifactData[];
 try {
   // NOTE: npm run dev をした時 を想定
-  const res = await fetch("/artifacts.json");
-  const artifactDataJson = await res.json();
+  const artifactDataJson = await fetch("/artifacts.json")
+    .catch((e) => {
+      console.log(`json load github: ${e}`);
+      return fetch(
+        "https://raw.githubusercontent.com/matsuyoido/GenshinTool/master/docs/artifacts.json",
+      );
+    })
+    .then((res) => res.json());
   artifacts = artifactDataJson;
 } catch (error) {
   // https://github.com/vitejs/vite/discussions/8242 のため、fetchに変更
-  const res = await fetch(
+  const artifactDataJson = await fetch(
     "https://raw.githubusercontent.com/matsuyoido/GenshinTool/master/docs/artifacts.json",
-  );
-  const artifactDataJson = await res.json();
+  ).then((res) => res.json());
   artifacts = artifactDataJson as ArtifactData[];
 }
 
