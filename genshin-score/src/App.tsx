@@ -89,6 +89,10 @@ function App(): JSX.Element {
           <Route path="" element={<Home />} />
           <Route path="artifact" element={<ArtifactScore />} />
         </Route>
+        <Route path="/GenshinTool/" element={<Layout />}>
+          <Route path="" element={<Home />} />
+          <Route path="artifact" element={<ArtifactScore />} />
+        </Route>
       </Routes>
     </>
   );
