@@ -15,7 +15,8 @@ interface ArtifactData {
 let artifacts: ArtifactData[];
 try {
   // NOTE: npm run dev をした時 を想定
-  const artifactDataJson = await fetch("/artifacts.json")
+  // const artifactDataJson = await fetch("/artifacts.json")
+  const artifactDataJson = await fetch("https://raw.githubusercontent.com/matsuyoido/GenshinTool/master/docs/artifacts.json")
     .catch((e) => {
       console.log(`json load github: ${e}`);
       return fetch(
