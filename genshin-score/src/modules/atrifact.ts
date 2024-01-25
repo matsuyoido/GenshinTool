@@ -1,4 +1,4 @@
-import artifactDataJson from "../../public/artifacts.json";
+import artifactDataJson from "@assets/artifacts.json";
 import { BigNumber } from "bignumber.js";
 
 interface ArtifactData {
@@ -15,7 +15,7 @@ interface ArtifactData {
 }
 let artifacts: ArtifactData[];
 try {
-  const res = await fetch("/atrifacts.json");
+  const res = await fetch("./assets/atrifacts.json");
   const artifactDataJson = await res.json();
   artifacts = artifactDataJson as ArtifactData[];
 } catch (error) {

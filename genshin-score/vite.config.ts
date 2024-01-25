@@ -10,7 +10,8 @@ export default defineConfig({
   build: {
     outDir: "../docs",
     emptyOutDir: true,
-    target: ['es2022', 'edge89', 'firefox89', 'chrome89', 'safari15']
+    target: ['es2022', 'edge89', 'firefox89', 'chrome89', 'safari15'],
+    assetsInlineLimit: 0,
   },
   server: {
     watch: {
