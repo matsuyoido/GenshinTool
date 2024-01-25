@@ -15,7 +15,7 @@ interface ArtifactData {
 }
 let artifacts: ArtifactData[];
 try {
-  const res = await fetch("./assets/atrifacts.json");
+  const res = await fetch("https://raw.githubusercontent.com/matsuyoido/GenshinTool/master/docs/assets/artifacts.json");
   const artifactDataJson = await res.json();
   artifacts = artifactDataJson as ArtifactData[];
 } catch (error) {
