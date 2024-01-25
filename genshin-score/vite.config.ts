@@ -6,7 +6,7 @@ import Pages from 'vite-plugin-pages';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), Pages()],
-  base: "", // NOTE: change href,src path relative
+  base: "/GenshinTool/", // https://ja.vitejs.dev/guide/static-deploy.html#github-pages
   build: {
     outDir: "../docs",
     emptyOutDir: true,

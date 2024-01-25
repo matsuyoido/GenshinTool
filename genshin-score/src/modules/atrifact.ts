@@ -26,6 +26,7 @@ try {
     .then((res) => res.json());
   artifacts = artifactDataJson;
 } catch (error) {
+  console.log(`json load github: ${error}`);
   // https://github.com/vitejs/vite/discussions/8242 のため、fetchに変更
   const artifactDataJson = await fetch(
     "https://raw.githubusercontent.com/matsuyoido/GenshinTool/master/docs/artifacts.json",
