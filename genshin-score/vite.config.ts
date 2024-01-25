@@ -12,6 +12,12 @@ export default defineConfig({
     emptyOutDir: true,
     target: ['es2022', 'edge89', 'firefox89', 'chrome89', 'safari15'],
     assetsInlineLimit: 0,
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        404: '404.html',
+      }
+    },
   },
   server: {
     watch: {
