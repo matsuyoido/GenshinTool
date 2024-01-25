@@ -10,6 +10,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@page/*": ["src/pages/*"],
+      "@assets/*": ["src/assets/*"],
+      "@modules/*": ["src/modules/*"],
     },
 
     /* Bundler mode */

@@ -10,5 +10,11 @@ export default defineConfig({
   build: {
     outDir: "../docs",
     emptyOutDir: true,
+    target: ['es2022', 'edge89', 'firefox89', 'chrome89', 'safari15']
   },
+  server: {
+    watch: {
+      usePolling: true,
+    }
+  }
 });
