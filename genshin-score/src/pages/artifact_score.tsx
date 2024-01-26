@@ -40,8 +40,10 @@ import {
   Tab,
   TabPanels,
   TabPanel,
+  HStack,
+  ModalCloseButton,
 } from "@chakra-ui/react";
-import { SmallCloseIcon } from "@chakra-ui/icons";
+import { SmallCloseIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import {
   artifacts,
   ArtifactData,
@@ -114,6 +116,7 @@ function ArtifactScore(): JSX.Element {
   });
   const inputRabelWidth = "8rem";
   const sectionPadding = "1rem";
+  const labelMarginBottom = "0.5rem";
   const artifactSelectOptions = useChakraSelectProps({
     useBasicStyles: true,
     name: "atrifacts",
@@ -141,10 +144,14 @@ function ArtifactScore(): JSX.Element {
   return (
     <>
       <Heading as="h1">聖遺物スコア計算</Heading>
+      <Heading as="h3" size="md" mt={sectionPadding} mb={labelMarginBottom}>
+        セット
+      </Heading>
+      <Select {...artifactSelectOptions} />
       <FormControl as="fieldset" mt={sectionPadding}>
         <FormLabel as="legend">
           <Heading as="h3" size="md">
-            聖遺物の種類
+            種類
           </Heading>
         </FormLabel>
         <RadioGroup
@@ -195,184 +202,10 @@ function ArtifactScore(): JSX.Element {
           )}
         />
       </FormControl>
-      <Heading as="h3" size="md" mt={sectionPadding}>
+      <Heading as="h3" size="md" mt={sectionPadding} mb={labelMarginBottom}>
         サブオプション
       </Heading>
       <Stack divider={<StackDivider borderColor="gray.200" />} align="stretch">
-        <InputGroup>
-          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
-            HP
-          </InputLeftElement>
-          <NumberInput
-            w="100%"
-            pl={inputRabelWidth}
-            onChange={(_, newVal) => setHp(!Number.isNaN(newVal) ? newVal : 0)}
-            value={hp === 0 ? "" : hp}
-          >
-            <NumberInputField />
-          </NumberInput>
-          <Button colorScheme="red" variant="outline" onClick={() => setHp(0)}>
-            <Icon as={SmallCloseIcon} />
-          </Button>
-        </InputGroup>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
-            HP(%)
-          </InputLeftElement>
-          <NumberInput
-            w="100%"
-            pl={inputRabelWidth}
-            onChange={(newVal) => setHpPercent(newVal)}
-            value={hpPercent}
-            precision={1}
-            step={0.1}
-          >
-            <NumberInputField />
-          </NumberInput>
-          <InputRightAddon>%</InputRightAddon>
-          <Button
-            colorScheme="red"
-            variant="outline"
-            onClick={() => setHpPercent("")}
-          >
-            <Icon as={SmallCloseIcon} />
-          </Button>
-        </InputGroup>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
-            攻撃力
-          </InputLeftElement>
-          <NumberInput
-            w="100%"
-            pl={inputRabelWidth}
-            onChange={(_, newVal) =>
-              setAttack(!Number.isNaN(newVal) ? newVal : 0)
-            }
-            value={attack === 0 ? "" : attack}
-          >
-            <NumberInputField />
-          </NumberInput>
-          <Button
-            colorScheme="red"
-            variant="outline"
-            onClick={() => setAttack(0)}
-          >
-            <Icon as={SmallCloseIcon} />
-          </Button>
-        </InputGroup>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
-            攻撃力(%)
-          </InputLeftElement>
-          <NumberInput
-            w="100%"
-            pl={inputRabelWidth}
-            onChange={(newVal) => setAttackPercent(newVal)}
-            value={attackPercent}
-            precision={1}
-            step={0.1}
-          >
-            <NumberInputField />
-          </NumberInput>
-          <InputRightAddon>%</InputRightAddon>
-          <Button
-            colorScheme="red"
-            variant="outline"
-            onClick={() => setAttackPercent("")}
-          >
-            <Icon as={SmallCloseIcon} />
-          </Button>
-        </InputGroup>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
-            防御力
-          </InputLeftElement>
-          <NumberInput
-            w="100%"
-            pl={inputRabelWidth}
-            onChange={(_, newVal) =>
-              setDefense(!Number.isNaN(newVal) ? newVal : 0)
-            }
-            value={defense === 0 ? "" : defense}
-          >
-            <NumberInputField />
-          </NumberInput>
-          <Button
-            colorScheme="red"
-            variant="outline"
-            onClick={() => setDefense(0)}
-          >
-            <Icon as={SmallCloseIcon} />
-          </Button>
-        </InputGroup>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
-            防御力(%)
-          </InputLeftElement>
-          <NumberInput
-            w="100%"
-            pl={inputRabelWidth}
-            onChange={(newVal) => setDefensePercent(newVal)}
-            value={defensePercent}
-            precision={1}
-            step={0.1}
-          >
-            <NumberInputField />
-          </NumberInput>
-          <InputRightAddon>%</InputRightAddon>
-          <Button
-            colorScheme="red"
-            variant="outline"
-            onClick={() => setDefensePercent("")}
-          >
-            <Icon as={SmallCloseIcon} />
-          </Button>
-        </InputGroup>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
-            元素チャージ効率
-          </InputLeftElement>
-          <NumberInput
-            w="100%"
-            pl={inputRabelWidth}
-            onChange={(newVal) => setEnergyRecharge(newVal)}
-            value={energyRecharge}
-            precision={1}
-            step={0.1}
-          >
-            <NumberInputField />
-          </NumberInput>
-          <InputRightAddon>%</InputRightAddon>
-          <Button
-            colorScheme="red"
-            variant="outline"
-            onClick={() => setEnergyRecharge("")}
-          >
-            <Icon as={SmallCloseIcon} />
-          </Button>
-        </InputGroup>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
-            元素熟知
-          </InputLeftElement>
-          <NumberInput
-            w="100%"
-            pl={inputRabelWidth}
-            onChange={(_, newVal) =>
-              setElementMastery(!Number.isNaN(newVal) ? newVal : 0)
-            }
-            value={elementMastery === 0 ? "" : elementMastery}
-          >
-            <NumberInputField />
-          </NumberInput>
-          <Button
-            colorScheme="red"
-            variant="outline"
-            onClick={() => setElementMastery(0)}
-          >
-            <Icon as={SmallCloseIcon} />
-          </Button>
-        </InputGroup>
         <InputGroup>
           <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
             会心率
@@ -419,11 +252,181 @@ function ArtifactScore(): JSX.Element {
             <Icon as={SmallCloseIcon} />
           </Button>
         </InputGroup>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
+            元素チャージ効率
+          </InputLeftElement>
+          <NumberInput
+            w="100%"
+            pl={inputRabelWidth}
+            onChange={(newVal) => setEnergyRecharge(newVal)}
+            value={energyRecharge}
+            precision={1}
+            step={0.1}
+          >
+            <NumberInputField />
+          </NumberInput>
+          <InputRightAddon>%</InputRightAddon>
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={() => setEnergyRecharge("")}
+          >
+            <Icon as={SmallCloseIcon} />
+          </Button>
+        </InputGroup>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
+            攻撃力(%)
+          </InputLeftElement>
+          <NumberInput
+            w="100%"
+            pl={inputRabelWidth}
+            onChange={(newVal) => setAttackPercent(newVal)}
+            value={attackPercent}
+            precision={1}
+            step={0.1}
+          >
+            <NumberInputField />
+          </NumberInput>
+          <InputRightAddon>%</InputRightAddon>
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={() => setAttackPercent("")}
+          >
+            <Icon as={SmallCloseIcon} />
+          </Button>
+        </InputGroup>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
+            攻撃力
+          </InputLeftElement>
+          <NumberInput
+            w="100%"
+            pl={inputRabelWidth}
+            onChange={(_, newVal) =>
+              setAttack(!Number.isNaN(newVal) ? newVal : 0)
+            }
+            value={attack === 0 ? "" : attack}
+          >
+            <NumberInputField />
+          </NumberInput>
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={() => setAttack(0)}
+          >
+            <Icon as={SmallCloseIcon} />
+          </Button>
+        </InputGroup>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
+            HP(%)
+          </InputLeftElement>
+          <NumberInput
+            w="100%"
+            pl={inputRabelWidth}
+            onChange={(newVal) => setHpPercent(newVal)}
+            value={hpPercent}
+            precision={1}
+            step={0.1}
+          >
+            <NumberInputField />
+          </NumberInput>
+          <InputRightAddon>%</InputRightAddon>
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={() => setHpPercent("")}
+          >
+            <Icon as={SmallCloseIcon} />
+          </Button>
+        </InputGroup>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
+            HP
+          </InputLeftElement>
+          <NumberInput
+            w="100%"
+            pl={inputRabelWidth}
+            onChange={(_, newVal) => setHp(!Number.isNaN(newVal) ? newVal : 0)}
+            value={hp === 0 ? "" : hp}
+          >
+            <NumberInputField />
+          </NumberInput>
+          <Button colorScheme="red" variant="outline" onClick={() => setHp(0)}>
+            <Icon as={SmallCloseIcon} />
+          </Button>
+        </InputGroup>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
+            防御力(%)
+          </InputLeftElement>
+          <NumberInput
+            w="100%"
+            pl={inputRabelWidth}
+            onChange={(newVal) => setDefensePercent(newVal)}
+            value={defensePercent}
+            precision={1}
+            step={0.1}
+          >
+            <NumberInputField />
+          </NumberInput>
+          <InputRightAddon>%</InputRightAddon>
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={() => setDefensePercent("")}
+          >
+            <Icon as={SmallCloseIcon} />
+          </Button>
+        </InputGroup>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
+            防御力
+          </InputLeftElement>
+          <NumberInput
+            w="100%"
+            pl={inputRabelWidth}
+            onChange={(_, newVal) =>
+              setDefense(!Number.isNaN(newVal) ? newVal : 0)
+            }
+            value={defense === 0 ? "" : defense}
+          >
+            <NumberInputField />
+          </NumberInput>
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={() => setDefense(0)}
+          >
+            <Icon as={SmallCloseIcon} />
+          </Button>
+        </InputGroup>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none" width={inputRabelWidth}>
+            元素熟知
+          </InputLeftElement>
+          <NumberInput
+            w="100%"
+            pl={inputRabelWidth}
+            onChange={(_, newVal) =>
+              setElementMastery(!Number.isNaN(newVal) ? newVal : 0)
+            }
+            value={elementMastery === 0 ? "" : elementMastery}
+          >
+            <NumberInputField />
+          </NumberInput>
+          <Button
+            colorScheme="red"
+            variant="outline"
+            onClick={() => setElementMastery(0)}
+          >
+            <Icon as={SmallCloseIcon} />
+          </Button>
+        </InputGroup>
       </Stack>
-      <Heading as="h3" size="md" mt={sectionPadding}>
-        聖遺物セット
-      </Heading>
-      <Select {...artifactSelectOptions} />
 
       <Box textAlign="center" mt={sectionPadding}>
         <Button
@@ -440,33 +443,39 @@ function ArtifactScore(): JSX.Element {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader pb={0}>
-            <Tabs isFitted variant="enclosed">
+            <HStack mt="1rem" mb="2rem">
+              <Button variant="outline" onClick={onClose}>
+                <ArrowBackIcon />
+              </Button>
+              <ModalCloseButton />
+            </HStack>
+            <Tabs isFitted variant="soft-rounded">
               <TabList mb="1em">
-                <Tab>
+                <Tab _selected={{ bg: "orange.400" }} borderBottom="inset">
                   <Image
                     boxSize="2rem"
                     src="https://github.com/FuroBath/ArtifacterImageGen/blob/master/emotes/%E6%94%BB%E6%92%83%E5%8A%9B.png?raw=true"
                   />
                 </Tab>
-                <Tab>
+                <Tab _selected={{ bg: "orange.400" }} borderBottom="inset">
                   <Image
                     boxSize="2rem"
                     src="https://github.com/FuroBath/ArtifacterImageGen/blob/master/emotes/%E5%85%83%E7%B4%A0%E3%83%81%E3%83%A3%E3%83%BC%E3%82%B8%E5%8A%B9%E7%8E%87.png?raw=true"
                   />
                 </Tab>
-                <Tab>
+                <Tab _selected={{ bg: "orange.400" }} borderBottom="inset">
                   <Image
                     boxSize="2rem"
                     src="https://github.com/FuroBath/ArtifacterImageGen/blob/master/emotes/%E9%98%B2%E5%BE%A1%E5%8A%9B.png?raw=true"
                   />
                 </Tab>
-                <Tab>
+                <Tab _selected={{ bg: "orange.400" }} borderBottom="inset">
                   <Image
                     boxSize="2rem"
                     src="https://github.com/FuroBath/ArtifacterImageGen/blob/master/emotes/HP.png?raw=true"
                   />
                 </Tab>
-                <Tab>
+                <Tab _selected={{ bg: "orange.400" }} borderBottom="inset">
                   <Image
                     boxSize="2rem"
                     src="https://github.com/FuroBath/ArtifacterImageGen/blob/master/emotes/%E5%85%83%E7%B4%A0%E7%86%9F%E7%9F%A5.png?raw=true"
@@ -876,9 +885,7 @@ function ArtifactScore(): JSX.Element {
               </StatGroup>
             </Stack>
           </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>閉じる</Button>
-          </ModalFooter>
+          <ModalFooter paddingY="5rem" />
         </ModalContent>
       </Modal>
     </>
