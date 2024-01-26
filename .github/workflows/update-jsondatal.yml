@@ -1,0 +1,36 @@
+
+name: Update HoYoWiki data json
+
+on:
+  schedule:
+    # JST: 6:00 every Sunday = UTC: 21:00
+    - cron: "0 21 * * 6"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download HoYoWiki Data
+      run: ./hoyowiki-download
+    - name: Deploy HoYoWiki Data
+      run: |
+        mv -f ./artifacts.json ./docs/artifacts.json
+        mv -f ./characters.json ./docs/characters.json
+    - name: Diff Check
+      # Commit & Push で、 steps.diff の参照をするために id 設定
+      id: diff
+      run: |
+        git add -N .
+        git diff --name-only --exit-code
+      continue-on-error: true
+    - name: Commit & Push
+      run: |
+        set -x
+        git config user.name github-actions[bot]
+        git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        git add .
+        git commit -m 'update json file'
+        git push
+      # https://docs.github.com/en/actions/learn-github-actions/contexts#steps-context
+      if: steps.diff.outcome == 'failure'
