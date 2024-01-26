@@ -15,8 +15,9 @@ interface ArtifactData {
 let artifacts: ArtifactData[];
 try {
   // NOTE: npm run dev をした時 を想定
-  // const artifactDataJson = await fetch("/artifacts.json")
-  const artifactDataJson = await fetch("https://raw.githubusercontent.com/matsuyoido/GenshinTool/master/docs/artifacts.json")
+  const artifactDataJson = await fetch(
+    `${import.meta.env.BASE_URL}artifacts.json`,
+  )
     .catch((e) => {
       console.log(`json load github: ${e}`);
       return fetch(
@@ -26,6 +27,7 @@ try {
     .then((res) => res.json());
   artifacts = artifactDataJson;
 } catch (error) {
+  // NOTE: この処理は実行されない想定だが、読み込み失敗時に処理継続不可能となるため念のためtry-catchを入れておく
   console.log(`json load github: ${error}`);
   // https://github.com/vitejs/vite/discussions/8242 のため、fetchに変更
   const artifactDataJson = await fetch(

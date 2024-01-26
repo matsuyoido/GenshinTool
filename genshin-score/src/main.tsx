@@ -22,7 +22,8 @@ const theme = extendTheme(
 const rootElement = document.getElementById("root") as HTMLElement;
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <Router>
+    {/* https://ja.vitejs.dev/guide/env-and-mode.html */}
+    <Router basename={import.meta.env.BASE_URL}>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>

@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
-// import react from "@vitejs/plugin-react-swc";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 import tsconfigPaths from "vite-tsconfig-paths";
 import Pages from 'vite-plugin-pages';
 
@@ -14,11 +13,10 @@ export default defineConfig({
     target: ['es2022', 'edge89', 'firefox89', 'chrome89', 'safari15'],
     assetsInlineLimit: 0,
     rollupOptions: {
-      external: ["react", "react-router", "react-router-dom"],
       input: {
         main: 'index.html',
         404: '404.html',
-      }
+      },
     },
   },
   server: {

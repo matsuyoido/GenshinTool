@@ -17,6 +17,8 @@ import {
   HStack,
   Card,
   CardBody,
+  UnorderedList,
+  ListItem,
 } from "@chakra-ui/react";
 
 const Layout = (): JSX.Element => (
@@ -31,7 +33,7 @@ const Layout = (): JSX.Element => (
     >
       <AlertIcon boxSize="40px" mr={0} />
       <AlertTitle mt={4} mb={1} fontSize="lg">
-        非公式サイトです。
+        原神の非公式サイト
       </AlertTitle>
       <AlertDescription maxWidth="sm">
         利用する際は自己責任でお願いします。
@@ -75,7 +77,21 @@ const Home = (): JSX.Element => (
         <Text>
           UID を入力しないで、原神のスコア計算をするためのサイトです。
         </Text>
-        <Text>非公式のサイトですが、ご活用ください。</Text>
+        <Text>データの送信や収集は、一切行っておりません。</Text>
+        <Text mt="2rem">各ページごとの詳細は、下記となります。</Text>
+        <UnorderedList>
+          <ListItem>
+            聖遺物スコア計算:
+            <UnorderedList listStyleType="none">
+              <ListItem>
+                https://github.com/matsuyoido/GenshinTool/blob/master/genshin-score/src/pages/artifact_score.tsx
+              </ListItem>
+              <ListItem>
+                https://github.com/matsuyoido/GenshinTool/blob/master/genshin-score/src/modules/atrifact.ts
+              </ListItem>
+            </UnorderedList>
+          </ListItem>
+        </UnorderedList>
       </CardBody>
     </Card>
   </>
